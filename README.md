@@ -2,7 +2,7 @@
 
 Simple authentication service and permission management.
 
-Check out [opensasme-back](https://github.com/macolmenerori/opensesame-back) for the API, and [opensesame-front](https://github.com/macolmenerori/opensesame-front) for the front part, with a simple and beautiful interface to interact with this service. More information on how the API and the front part works on their respective repos.
+Check out [openseasme-back](https://github.com/macolmenerori/opensesame-back) for the API, and [opensesame-front](https://github.com/macolmenerori/opensesame-front) for the front part, with a simple and beautiful interface to interact with this service. More information on how the API and the front part works on their respective repos.
 
 ## Requirements
 
@@ -53,6 +53,12 @@ docker run -d \
   --name opensesame-db \
   -p 27017:27017 \
   opensesame-db
+```
+
+3. To connect to this database
+
+```
+mongodb://admindb:admindb@localhost:27017/opensesame?authSource=admin
 ```
 
 ### opensesame-back
