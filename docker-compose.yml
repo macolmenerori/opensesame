@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  db:
+    build: .
+    container_name: opensesame-db
+    ports:
+      - "27017:27017"
+  back:
+    build:
+      context: ./opensesame-back
+      dockerfile: Dockerfile
+    container_name: opensesame-back
+    environment:
+      NODE_ENV: production
+      PORT: 8080
+      DB_NAME: opensesame
+      DATABASE: mongodb://admindb:admindb@db:27017/opensesame?authSource=admin
+      PASSWORD_HASH_DIFFICULTY: 12
+      JWT_SECRET: jc2TNsWyaM3DdKkhurJL8QGzCvX9BfUY
+      JWT_EXPIRES_IN: 7d
+      JWT_COOKIE_EXPIRES_IN: 7
+      RATELIMIT_MAXCONNECTIONS: 100
+      RATELIMIT_WINDOWMS: 3600000
+      CORS_WHITELIST: http://front:3000,http://localhost
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+  front:
+    build:
+      context: ./opensesame-front
+      dockerfile: Dockerfile
+    container_name: opensesame-front
+    environment:
+      NODE_ENV: production
+      BASE_URL_API: http://localhost:8080/api
+    depends_on:
+      - db
+      - back
+    ports:
+      - "80:3000"
