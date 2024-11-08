@@ -1,3 +1,6 @@
 [submodule "opensesame-back"]
 	path = opensesame-back
 	url = https://github.com/macolmenerori/opensesame-back.git
+[submodule "opensesame-front"]
+	path = opensesame-front
+	url = https://github.com/macolmenerori/opensesame-front.git
